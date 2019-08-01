@@ -17,3 +17,8 @@ function createStore () {
       getState
     }
   }
+
+  const store=createStore();
+  store.subscribe(()=>{
+    console.log('the subscribed store value is:', store.getState())
+  })
