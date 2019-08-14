@@ -7,14 +7,21 @@ function createStore () {
   
     let state
     //new arrow  function
+    let listeners=[]
     //it's responsible for returning the state  
     const getState = () => state
-    
+    const subscribe = (listener)=>{
+      listeners.push(listener)
+      return()=>{
+        listeners=listeners.filter((l)=>l !==listener)
+      }
+    }
 
     //when ever createstore is invoked we want to return an object
     //the object returned has the ability to get the state
     return {
-      getState
+      getState,
+      subscribe
     }
   }
 
