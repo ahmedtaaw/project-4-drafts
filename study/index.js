@@ -10,10 +10,16 @@ function createStore () {
     let listeners=[]
     //it's responsible for returning the state  
     const getState = () => state
+    const getListeners = () => listeners
     const subscribe = (listener)=>{
       listeners.push(listener)
+      console.log(listeners)
+        console.log(listener)
+        console.log(listeners.filter((l)=>l !==listener))
       return()=>{
         listeners=listeners.filter((l)=>l !==listener)
+        
+      //  console.log("@@@@"+createStore.getListeners)
       }
     }
 
@@ -24,8 +30,19 @@ function createStore () {
       subscribe
     }
   }
-
-  const store=createStore();
-  store.subscribe(()=>{
-    console.log('the subscribed store value is:', store.getState())
-  })
+//console.log(createStore.getListeners)
+const store = createStore()
+//console.log(store.subscribe())
+store.subscribe(()=>{
+  console.log('the new state is: ',store.getState())
+  //console.log(store.getListeners)
+})
+store.subscribe(()=>{
+  console.log('the store changed')
+  //console.log(store.getListeners)
+})
+store.subscribe(()=>{
+  console.log('the store changed')
+  //console.log(store.getListeners)
+})
+//console.log(store.getListeners)
