@@ -17,6 +17,9 @@ Thinking about the code we just wrote, what does the getState() function do?
 
     const subscribe = (listener)=>{
         listeners.push(listener)
+        return()=>{
+            listeners=listeners.filter((l)=l!==listener)
+        }
     }
 
     return{
